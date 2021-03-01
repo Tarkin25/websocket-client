@@ -9,14 +9,7 @@ import {
 } from "@material-ui/core";
 import { format } from "date-fns";
 import React, { Fragment } from "react";
-import { Message } from "./reducer";
-import Actions from "./state/actions";
-import Action from "./state/actionTypes";
-
-export type MessageListProps = {
-    messages: Message[];
-    dispatch: React.Dispatch<Action>;
-};
+import { useStompContext } from "./StompContext";
 
 const formatBody = (body: string): string => {
     try {
@@ -28,18 +21,15 @@ const formatBody = (body: string): string => {
 
 const formatDate = (date: Date): string => format(date, "HH:mm:ss");
 
-const MessageList = (props: MessageListProps) => {
-    const { messages, dispatch } = props;
-
-    const handleClear = () => {
-        dispatch(Actions.messagesCleared());
-    }
+const MessageListView = () => {
+    
+    const { state: { messages }, clearMessages } = useStompContext();
 
     return (
         <Fragment>
-            <Toolbar>
-                <Typography variant="h5">Messages</Typography>
-                <Button variant="outlined" onClick={handleClear} size="small">
+            <Typography variant="h5">Messages</Typography>
+            <Toolbar disableGutters>
+                <Button variant="outlined" onClick={clearMessages} size="small">
                     Clear
                 </Button>
             </Toolbar>
@@ -83,4 +73,4 @@ const MessageList = (props: MessageListProps) => {
     );
 };
 
-export default MessageList;
+export default MessageListView;

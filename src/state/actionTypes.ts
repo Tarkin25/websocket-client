@@ -1,4 +1,5 @@
 import { Message, Subscription } from "stompjs";
+import { ConnectionType } from "./reducer";
 
 export const CONNECTED = "CONNECTED";
 export const DISCONNECTED = "DISCONNECTED";
@@ -12,6 +13,7 @@ export const MESSAGES_CLEARED = "MESSAGES_CLEARED";
 type Connected = {
     type: typeof CONNECTED;
     url: string;
+    connectionType: ConnectionType;
 }
 
 type Disconnected = {
@@ -35,6 +37,11 @@ type SubscriptionEnabled = {
     subscription: Subscription;
 }
 
+type SubscriptionRemoved = {
+    type: typeof SUBSCRIPTION_REMOVED;
+    destination: string;
+}
+
 type MessageReceived = {
     type: typeof MESSAGE_RECEIVED;
     message: Message;
@@ -45,6 +52,6 @@ type MessagesCleared = {
     type: typeof MESSAGES_CLEARED;
 }
 
-type Action = Connected | Disconnected | SubscriptionAdded | SubscriptionDisabled | SubscriptionEnabled | MessageReceived | MessagesCleared;
+type Action = Connected | Disconnected | SubscriptionAdded | SubscriptionDisabled | SubscriptionEnabled | SubscriptionRemoved | MessageReceived | MessagesCleared;
 
 export default Action;

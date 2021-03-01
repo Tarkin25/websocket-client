@@ -1,35 +1,42 @@
-import { Button, Grid, TextField } from '@material-ui/core';
-import React, { useState } from 'react'
+import { Button, Grid } from '@material-ui/core';
+import { Form, Formik, FormikHelpers } from 'formik';
+import React from 'react'
+import TextField from './components/TextField';
+import { useStompContext } from './StompContext';
 
-export type SubscriptionFormProps = {
-    onSubmit: (destination: string) => void;
+type Values = {
+    destination: string;
 }
 
-const SubscriptionForm = (props: SubscriptionFormProps) => {
+const initialValues: Values = {
+    destination: ""
+}
 
-    const { onSubmit } = props;
-    const [destination, setDestination] = useState("");
+const SubscriptionForm = () => {
 
-    const handleDestinationChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setDestination(e.target.value);
-    }
+    const { addSubscription } = useStompContext();
 
-    const handleSubmit = () => {
-        onSubmit(destination);
-        setDestination("");
+    const handleSubmit = (values: Values, helpers: FormikHelpers<Values>) => {
+        addSubscription(values.destination);
+        helpers.resetForm();
     }
 
     return (
-        <Grid container spacing={2} alignItems="flex-end">
+        <Formik
+            initialValues={initialValues}
+            onSubmit={handleSubmit}
+        >
+            <Grid container spacing={2} alignItems="flex-end" component={Form}>
             <Grid item>
-                <TextField label="Destination" name="destination" value={destination} onChange={handleDestinationChange} />
+                <TextField name="destination" label="Destination" />
             </Grid>
             <Grid item>
-                <Button variant="outlined" color="primary" onClick={handleSubmit}>
+                <Button variant="outlined" color="primary" size="small" type="submit">
                     Subscribe
                 </Button>
             </Grid>
         </Grid>
+        </Formik>
     )
 }
 

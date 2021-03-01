@@ -1,11 +1,13 @@
 import { Message, Subscription } from "stompjs";
-import Action, { CONNECTED, DISCONNECTED, MESSAGES_CLEARED, MESSAGE_RECEIVED, SUBSCRIPTION_ADDED, SUBSCRIPTION_DISABLED, SUBSCRIPTION_ENABLED } from "./actionTypes";
+import Action, { CONNECTED, DISCONNECTED, MESSAGES_CLEARED, MESSAGE_RECEIVED, SUBSCRIPTION_ADDED, SUBSCRIPTION_DISABLED, SUBSCRIPTION_ENABLED, SUBSCRIPTION_REMOVED } from "./actionTypes";
+import { ConnectionType } from "./reducer";
 
 export default class Actions {
 
-    public static connected = (url: string): Action => ({
+    public static connected = (url: string, type: ConnectionType): Action => ({
         type: CONNECTED,
-        url
+        url,
+        connectionType: type
     })
 
     public static disconnected = (): Action => ({
@@ -27,6 +29,11 @@ export default class Actions {
         type: SUBSCRIPTION_ENABLED,
         destination,
         subscription
+    })
+
+    public static subscriptionRemoved = (destination: string): Action => ({
+        type: SUBSCRIPTION_REMOVED,
+        destination
     })
 
     public static messageReceived = (message: Message): Action => ({
