@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.js": "/websocket-client/static/js/main.c4342e7d.chunk.js",
+    "main.js.map": "/websocket-client/static/js/main.c4342e7d.chunk.js.map",
+    "runtime-main.js": "/websocket-client/static/js/runtime-main.2ced51de.js",
+    "runtime-main.js.map": "/websocket-client/static/js/runtime-main.2ced51de.js.map",
+    "static/css/2.30810337.chunk.css": "/websocket-client/static/css/2.30810337.chunk.css",
+    "static/js/2.f6778634.chunk.js": "/websocket-client/static/js/2.f6778634.chunk.js",
+    "static/js/2.f6778634.chunk.js.map": "/websocket-client/static/js/2.f6778634.chunk.js.map",
+    "index.html": "/websocket-client/index.html",
+    "static/css/2.30810337.chunk.css.map": "/websocket-client/static/css/2.30810337.chunk.css.map",
+    "static/js/2.f6778634.chunk.js.LICENSE.txt": "/websocket-client/static/js/2.f6778634.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.2ced51de.js",
+    "static/css/2.30810337.chunk.css",
+    "static/js/2.f6778634.chunk.js",
+    "static/js/main.c4342e7d.chunk.js"
+  ]
+}
