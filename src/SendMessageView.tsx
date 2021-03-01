@@ -28,10 +28,10 @@ const SendMessageView = () => {
                 <Grid item xs={12}>
                     <Typography variant="h5">Send Message</Typography>
                 </Grid>
-                <Grid item xs={8}>
+                <Grid item xs>
                     <TextField name="destination" label="Destination" />
                 </Grid>
-                <Grid item xs={4}>
+                <Grid item>
                     <Button variant="outlined" color="primary" fullWidth type="submit" size="small">
                         Send
                     </Button>

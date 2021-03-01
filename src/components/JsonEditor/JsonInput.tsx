@@ -4,11 +4,22 @@ import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/mode/javascript/javascript";
 import "codemirror/lib/codemirror.css";
 import "codemirror/addon/edit/closebrackets";
-import { InputBaseComponentProps } from "@material-ui/core";
+import "codemirror/theme/material-darker.css";
+import { InputBaseComponentProps, makeStyles } from "@material-ui/core";
+import clsx from "clsx";
+
+const useStyle = makeStyles(theme => ({
+    root: {
+        "& .CodeMirror": {
+            backgroundColor: "inherit"
+        }
+    }
+}), { name: "JsonInput" });
 
 const JsonInput = (props: InputBaseComponentProps) => {
 
     const { className,  onAnimationStart, onBlur, onFocus, onChange, value, name } = props;
+    const classes = useStyle(props);
 
     const handleChange = (value: string) => {
         const event = {
@@ -60,7 +71,7 @@ const JsonInput = (props: InputBaseComponentProps) => {
 
     return (
         <div
-            className={className}
+            className={clsx(classes.root, className)}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onAnimationStart={handleAnimationStart}
@@ -73,6 +84,7 @@ const JsonInput = (props: InputBaseComponentProps) => {
                         name: "javascript",
                         json: true,
                     },
+                    theme: 'material-darker',
                     autoCloseBrackets: true,
                 }}
             />

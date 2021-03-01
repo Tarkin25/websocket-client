@@ -16,7 +16,7 @@ const ConnectionInfoView = () => {
                 <Typography variant="h5">Connection</Typography>
             </Grid>
             <Grid item>
-                <Typography>{type}</Typography>
+                <Typography>{`${type} (STOMP)`}</Typography>
             </Grid>
             <Grid item>
                 <Typography>{url}</Typography>
