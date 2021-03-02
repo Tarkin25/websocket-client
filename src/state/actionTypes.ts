@@ -1,5 +1,5 @@
 import { Message, Subscription } from "stompjs";
-import { ConnectionType } from "./reducer";
+import { ConnectionType } from "../StompContext";
 
 export const CONNECTED = "CONNECTED";
 export const DISCONNECTED = "DISCONNECTED";

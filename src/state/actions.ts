@@ -1,6 +1,6 @@
 import { Message, Subscription } from "stompjs";
+import { ConnectionType } from "../StompContext";
 import Action, { CONNECTED, DISCONNECTED, MESSAGES_CLEARED, MESSAGE_RECEIVED, SUBSCRIPTION_ADDED, SUBSCRIPTION_DISABLED, SUBSCRIPTION_ENABLED, SUBSCRIPTION_REMOVED } from "./actionTypes";
-import { ConnectionType } from "./reducer";
 
 export default class Actions {
 

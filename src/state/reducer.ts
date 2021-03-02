@@ -1,7 +1,4 @@
-import {
-    Subscription as StompSubscription,
-    Message as StompMessage,
-} from "stompjs";
+import { State } from "../StompContext";
 import Action, {
     CONNECTED,
     DISCONNECTED,
@@ -12,31 +9,6 @@ import Action, {
     SUBSCRIPTION_ENABLED,
     SUBSCRIPTION_REMOVED,
 } from "./actionTypes";
-
-export type Subscription = StompSubscription & {
-    enabled: boolean;
-};
-
-export type Message = StompMessage & {
-    timestamp: Date;
-};
-
-export enum ConnectionType {
-    WEBSOCKET = "WebSocket",
-    SOCKJS = "SockJS",
-}
-
-export type State = {
-    connection: {
-        connected: boolean;
-        url: string | null;
-        type: ConnectionType | null;
-    };
-    subscriptions: {
-        [destination: string]: Subscription;
-    };
-    messages: Message[];
-};
 
 const reducer = (state: State, action: Action): State => {
     switch (action.type) {

@@ -3,8 +3,7 @@ import { Form, Formik } from 'formik';
 import React from 'react'
 import SockJS from 'sockjs-client';
 import TextField from './components/TextField';
-import { ConnectionType } from './state/reducer';
-import { useStompContext } from './StompContext';
+import { ConnectionType, useStompContext } from './StompContext';
 
 type Values = {
     url: string;

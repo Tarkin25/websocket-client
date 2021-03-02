@@ -1,7 +1,36 @@
 import React, { createContext, PropsWithChildren, useCallback, useContext, useDebugValue, useReducer, useRef } from 'react'
 import Stomp, { Client } from 'stompjs';
 import Actions from './state/actions';
-import reducer, { ConnectionType, State } from './state/reducer';
+import reducer from './state/reducer';
+import {
+    Subscription as StompSubscription,
+    Message as StompMessage,
+} from "stompjs";
+
+export type Subscription = StompSubscription & {
+    enabled: boolean;
+};
+
+export type Message = StompMessage & {
+    timestamp: Date;
+};
+
+export enum ConnectionType {
+    WEBSOCKET = "WebSocket",
+    SOCKJS = "SockJS",
+}
+
+export type State = {
+    connection: {
+        connected: boolean;
+        url: string | null;
+        type: ConnectionType | null;
+    };
+    subscriptions: {
+        [destination: string]: Subscription;
+    };
+    messages: Message[];
+};
 
 export type StompContextValue = {
     state: State;

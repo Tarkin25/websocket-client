@@ -29,15 +29,15 @@ const SendMessageView = () => {
                     <Typography variant="h5">Send Message</Typography>
                 </Grid>
                 <Grid item xs>
-                    <TextField name="destination" label="Destination" />
+                    <TextField tabIndex={0} name="destination" label="Destination" />
                 </Grid>
                 <Grid item>
-                    <Button variant="outlined" color="primary" fullWidth type="submit" size="small">
+                    <Button tabIndex={2} variant="outlined" color="primary" fullWidth type="submit" size="small">
                         Send
                     </Button>
                 </Grid>
                 <Grid item xs={12}>
-                    <JsonEditor name="body" label="Body" variant="outlined" />
+                    <JsonEditor tabIndex={1} name="body" label="Body" variant="outlined" />
                 </Grid>
             </Grid>
         </Formik>
