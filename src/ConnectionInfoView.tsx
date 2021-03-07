@@ -13,9 +13,6 @@ const ConnectionInfoView = () => {
     return (
         <Grid container spacing={2} direction="column">
             <Grid item>
-                <Typography variant="h5">Connection</Typography>
-            </Grid>
-            <Grid item>
                 <Typography>{`${type} (STOMP)`}</Typography>
             </Grid>
             <Grid item>

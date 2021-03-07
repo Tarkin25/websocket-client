@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { forwardRef } from "react";
 
 import { Controlled as CodeMirror } from "react-codemirror2";
 import "codemirror/mode/javascript/javascript";
@@ -16,7 +16,7 @@ const useStyle = makeStyles(theme => ({
     }
 }), { name: "JsonInput" });
 
-const JsonInput = (props: InputBaseComponentProps) => {
+const JsonInput = forwardRef<HTMLInputElement, InputBaseComponentProps>((props, ref) => {
 
     const { className,  onAnimationStart, onBlur, onFocus, onChange, value, name } = props;
     const classes = useStyle(props);
@@ -64,17 +64,13 @@ const JsonInput = (props: InputBaseComponentProps) => {
         onAnimationStart && onAnimationStart(e as React.AnimationEvent<HTMLInputElement>);
     }
 
-    useEffect(() => {
-        handleChange(value);
-        // eslint-disable-next-line
-    }, [value]);
-
     return (
         <div
             className={clsx(classes.root, className)}
             onFocus={handleFocus}
             onBlur={handleBlur}
             onAnimationStart={handleAnimationStart}
+            ref={ref}
         >
             <CodeMirror
                 value={value}
@@ -90,6 +86,6 @@ const JsonInput = (props: InputBaseComponentProps) => {
             />
         </div>
     );
-};
+});
 
 export default JsonInput;

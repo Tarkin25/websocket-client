@@ -1,3 +1,4 @@
+import { InputProps } from '@material-ui/core';
 import React from 'react'
 import TextField, { TextFieldProps } from '../TextField';
 import JsonInput from './JsonInput';
@@ -8,8 +9,8 @@ const JsonEditor = (props: JsonEditorProps) => {
 
     const InputProps = {
         ...props.InputProps,
-        inputComponent: JsonInput
-    }
+        inputComponent: JsonInput,
+    } as Partial<InputProps>;
 
     return (
         <TextField {...props} InputProps={InputProps} multiline />

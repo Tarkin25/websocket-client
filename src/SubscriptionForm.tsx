@@ -9,7 +9,7 @@ type Values = {
 }
 
 const initialValues: Values = {
-    destination: ""
+    destination: "/queue/events"
 }
 
 const SubscriptionForm = () => {

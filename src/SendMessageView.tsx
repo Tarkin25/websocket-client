@@ -1,4 +1,4 @@
-import { Button, Grid, Typography } from "@material-ui/core";
+import { Button, Grid } from "@material-ui/core";
 import { Form, Formik } from "formik";
 import React from "react";
 import JsonEditor from "./components/JsonEditor/JsonEditor";
@@ -11,8 +11,8 @@ type Values = {
 };
 
 const initialValues: Values = {
-    destination: "",
-    body: "",
+    destination: "/queue/commands",
+    body: "{\n\t\"hello\": \"world\"\n}",
 };
 
 const SendMessageView = () => {
@@ -24,15 +24,12 @@ const SendMessageView = () => {
 
     return (
         <Formik initialValues={initialValues} onSubmit={handleSubmit}>
-            <Grid container spacing={2} alignItems="flex-end" component={Form}>
-                <Grid item xs={12}>
-                    <Typography variant="h5">Send Message</Typography>
-                </Grid>
+            <Grid container spacing={1} component={Form} alignItems="stretch">
                 <Grid item xs>
-                    <TextField tabIndex={0} name="destination" label="Destination" />
+                    <TextField tabIndex={0} variant="outlined" name="destination" label="Destination" />
                 </Grid>
                 <Grid item>
-                    <Button tabIndex={2} variant="outlined" color="primary" fullWidth type="submit" size="small">
+                    <Button tabIndex={2} variant="contained" color="primary" fullWidth type="submit">
                         Send
                     </Button>
                 </Grid>

@@ -1,5 +1,5 @@
 import React, { forwardRef } from 'react'
-import { TextField as MuiTextField, TextFieldProps as MuiTextFieldProps} from '@material-ui/core';
+import { InputLabelProps, TextField as MuiTextField, TextFieldProps as MuiTextFieldProps} from '@material-ui/core';
 import { useField } from 'formik';
 
 export type TextFieldProps = Omit<MuiTextFieldProps, "value" | "onChange" | "onBlur" | "error"> & {
@@ -12,8 +12,13 @@ const TextField = forwardRef<HTMLDivElement, TextFieldProps>((props, ref) => {
     const error = Boolean(meta.touched && meta.error);
     const helperText = error ? meta.error : props.helperText;
 
+    const InputLabelProps = {
+        ...props.InputLabelProps,
+        shrink: field.value ? true : undefined
+    } as InputLabelProps;
+
     return (
-        <MuiTextField {...field} {...props} error={error} helperText={helperText} ref={ref} />
+        <MuiTextField {...field} {...props} error={error} helperText={helperText} ref={ref} InputLabelProps={InputLabelProps} />
     )
 })
 

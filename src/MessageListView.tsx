@@ -4,11 +4,12 @@ import {
     Grid,
     List,
     ListItem,
+    makeStyles,
     Toolbar,
     Typography,
 } from "@material-ui/core";
 import { format } from "date-fns";
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { useStompContext } from "./StompContext";
 
 const formatBody = (body: string): string => {
@@ -21,19 +22,31 @@ const formatBody = (body: string): string => {
 
 const formatDate = (date: Date): string => format(date, "HH:mm:ss");
 
+const useStyle = makeStyles(theme => ({
+    list: {
+        overflowY: "auto",
+        height: "calc(100% - 64px)"
+    }
+}), { name: "MessageListView" });
+
 const MessageListView = () => {
     
     const { state: { messages }, clearMessages } = useStompContext();
+    const classes = useStyle();
+    const scrollRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollIntoView({behavior: "smooth"});
+    }, [messages.length]);
 
     return (
         <Fragment>
-            <Typography variant="h5">Messages</Typography>
             <Toolbar disableGutters>
                 <Button variant="outlined" onClick={clearMessages} size="small">
                     Clear
                 </Button>
             </Toolbar>
-            <List>
+            <List className={classes.list}>
                 {messages.map((message, index) => (
                     <Fragment key={index}>
                         <ListItem>
@@ -46,12 +59,12 @@ const MessageListView = () => {
                                 {Object.entries(message.headers).map(
                                     ([name, value]) => (
                                         <Fragment key={name}>
-                                            <Grid item xs={6}>
+                                            <Grid item xs={3}>
                                                 <code>
                                                     {name + ":"}
                                                 </code>
                                             </Grid>
-                                            <Grid item xs={6}>
+                                            <Grid item xs={9}>
                                                 <code>
                                                     {value + ""}
                                                 </code>
@@ -68,6 +81,7 @@ const MessageListView = () => {
                         <Divider />
                     </Fragment>
                 ))}
+                <div ref={scrollRef} />
             </List>
         </Fragment>
     );

@@ -3,6 +3,8 @@ import { Form, Formik } from 'formik';
 import React from 'react'
 import SockJS from 'sockjs-client';
 import TextField from './components/TextField';
+import { sendMessage, stompConnect, subscribe } from './redux/actions';
+import { useStompDispatch } from './redux/store';
 import { ConnectionType, useStompContext } from './StompContext';
 
 type Values = {
@@ -11,13 +13,14 @@ type Values = {
 }
 
 const initialValues: Values = {
-    url: "",
+    url: "ws://localhost:8080/ws",
     connectionType: ConnectionType.WEBSOCKET
 }
 
 const ConnectionForm = () => {
 
     const {connect} = useStompContext();
+    const dispatch = useStompDispatch();
 
     const handleSubmit = (values: Values) => {
         const { url, connectionType } = values;
@@ -30,6 +33,12 @@ const ConnectionForm = () => {
         }
 
         connect(ws, connectionType);
+
+        /* dispatch(stompConnect(ws))
+        .then(() => {
+            dispatch(subscribe("/queue/events"));
+            dispatch(sendMessage("/queue/commands", "Hello World"));
+        }); */
     }
 
     return (

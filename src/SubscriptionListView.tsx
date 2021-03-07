@@ -1,4 +1,4 @@
-import { Checkbox, IconButton, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, Toolbar, Typography } from '@material-ui/core';
+import { Checkbox, IconButton, List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, Toolbar } from '@material-ui/core';
 import React, { Fragment } from 'react'
 import { useStompContext } from './StompContext'
 import SubscriptionForm from './SubscriptionForm';
@@ -18,7 +18,6 @@ const SubscriptionListView = () => {
 
     return (
         <Fragment>
-            <Typography variant="h5">Subscriptions</Typography>
             <Toolbar disableGutters>
                 <SubscriptionForm />
             </Toolbar>

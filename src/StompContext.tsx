@@ -1,4 +1,4 @@
-import React, { createContext, PropsWithChildren, useCallback, useContext, useDebugValue, useReducer, useRef } from 'react'
+import React, { createContext, PropsWithChildren, useCallback, useContext, useReducer, useRef } from 'react'
 import Stomp, { Client } from 'stompjs';
 import Actions from './state/actions';
 import reducer from './state/reducer';
@@ -59,8 +59,6 @@ const initialState: State = {
 
 export const useStompContext = () => {
     const context = useContext(StompContext);
-
-    useDebugValue(context.state);
 
     return context;
 };
